@@ -58,8 +58,8 @@ class HPUWorker:
         os.environ["RANK"] = str(rank)
         os.environ["WORLD_SIZE"] = str(world_size)
 
-        device = torch.device(f"hpu:{rank}")
-        torch.npu.set_device(device)
+        device = torch.device("hpu")
+        torch.hpu.set_device(device)
 
         # hack
         # set hf_config to a fake one to avolid get attr error
@@ -79,7 +79,7 @@ class HPUWorker:
         with DeviceMemoryProfiler() as m:
             self.pipeline = model_loader.load_model(
                 od_config=self.od_config,
-                load_device=f"hpu:{rank}",
+                load_device="hpu",
             )
         time_after_load = time.perf_counter()
 

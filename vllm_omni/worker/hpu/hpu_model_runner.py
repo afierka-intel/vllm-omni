@@ -38,7 +38,7 @@ logger = init_logger(__name__)
 
 class OmniHPUModelRunner(HPUModelRunner):
     """
-    Base class for NPU model runners with multimodality support.
+    Base class for HPU model runners with multimodality support.
     """
 
     def __init__(self, *args, **kwargs) -> None:
